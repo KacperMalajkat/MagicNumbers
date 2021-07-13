@@ -11,11 +11,21 @@ public class DataOperations {
 
     }
 
+    public DataOperations(){}
+
+    public void setData(String s){
+        data = s;
+        this.dane = data.split("\n");
+    }
+
     public FileTypes checkTheType() {
+        if (isJPG_JFIF()) return FileTypes.JPG_JFIF;
+        if (isJPG_EXIF()) return FileTypes.JPG_EXIF;
         if (isJPG()) return FileTypes.JPG;
         else if (isGIF()) return FileTypes.GIF;
-        else if (isTXT()) return FileTypes.TXT;
         else if (isPNG()) return FileTypes.PNG;
+        else if (isPDF()) return FileTypes.PDF;
+        else if (isTXT()) return FileTypes.TXT;
         else return FileTypes.NOT_FOUND;
     }
 
@@ -31,6 +41,21 @@ public class DataOperations {
         else return false;
     }
 
+    private boolean isJPG_JFIF(){
+        if (dane[0].startsWith("FF D8") && dane[dane.length-1].contains("FF D9") && data.contains("4A 46 49 46")){
+            return true;
+        }
+        else return false;
+    }
+
+    private boolean isJPG_EXIF(){
+        if (dane[0].startsWith("FF D8") && dane[dane.length-1].contains("FF D9") && data.contains("45 78 69 66")){
+            return true;
+        }
+        else return false;
+    }
+
+
     /*
     GIF image files have the ASCII code for "GIF89a" (47 49 46 38 39 61) or "GIF87a" (47 49 46 38 37 61)
      */
@@ -40,7 +65,7 @@ public class DataOperations {
     }
 
     /*
-        
+        ???
      */
     private boolean isTXT(){
         // TODO:
@@ -57,5 +82,15 @@ public class DataOperations {
         if (dane[0].startsWith("89 50 4E 47 0D 0A 1A 0A")) return true;
         else return false;
     }
+
+    /*
+    PDF files start with "%PDF" (hex 25 50 44 46).
+     */
+
+    private boolean isPDF(){
+        if (dane[0].startsWith("25 50 44 46")) return true;
+        else return false;
+    }
+
 
 }
