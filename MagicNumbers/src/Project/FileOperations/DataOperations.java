@@ -3,12 +3,13 @@ package Project.FileOperations;
 public class DataOperations {
     private String data;
     private String[] dane;
+    private String txt;
     private FileTypes fileTypes;
 
-    public DataOperations(String data) {
+    public DataOperations(String data, String txt) {
         this.data = data;
         this.dane = data.split("\n");
-
+        this.txt = txt;
     }
 
     public DataOperations(){}
@@ -16,6 +17,10 @@ public class DataOperations {
     public void setData(String s){
         data = s;
         this.dane = data.split("\n");
+    }
+
+    public void setTxt(String s){
+        txt = s;
     }
 
     public FileTypes checkTheType() {

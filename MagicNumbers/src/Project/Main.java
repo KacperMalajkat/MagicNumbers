@@ -27,8 +27,11 @@ public class Main {
 
         DataOperations dataOperations = new DataOperations();
         FileTypes fileTypes;
+        String dane[] = new String[2];
         for (int i=0; i< args.length; i++){
-            dataOperations.setData(FileToHex.convertFileToHex(Paths.get(args[i])));
+            dane = FileToHex.convertFileToHex(Paths.get(args[i]));
+            dataOperations.setData(dane[0]);
+            dataOperations.setTxt(dane[1]);
             fileTypes = dataOperations.checkTheType();
             if (fileTypes == FileTypes.NOT_FOUND){
                 System.out.print(ANSI_BLUE + "| " + ANSI_RESET);
@@ -39,7 +42,6 @@ public class Main {
                 System.out.print(ANSI_GREEN + "Your file type is: " + fileTypes.toString() + ANSI_RESET);
                 System.out.print(ANSI_BLUE + " |" + ANSI_RESET + "\n");
             }
-
         }
 
     }
