@@ -7,7 +7,6 @@ import java.nio.file.Path;
 
 public class FileToHex {
     private static final String UNKNOWN_CHARACTER = ".";
-    public static StringBuilder text = new StringBuilder();
 
     public static String[] convertFileToHex(Path path) throws IOException {
 
@@ -18,6 +17,7 @@ public class FileToHex {
         StringBuilder result = new StringBuilder();
         StringBuilder hex = new StringBuilder();
         StringBuilder input = new StringBuilder();
+        StringBuilder text = new StringBuilder();
 
         int count = 0;
         int value;

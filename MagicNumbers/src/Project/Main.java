@@ -27,9 +27,8 @@ public class Main {
 
         DataOperations dataOperations = new DataOperations();
         FileTypes fileTypes;
-        String dane[] = new String[2];
         for (int i=0; i< args.length; i++){
-            dane = FileToHex.convertFileToHex(Paths.get(args[i]));
+            String dane[] = FileToHex.convertFileToHex(Paths.get(args[i]));
             dataOperations.setData(dane[0]);
             dataOperations.setTxt(dane[1]);
             fileTypes = dataOperations.checkTheType();

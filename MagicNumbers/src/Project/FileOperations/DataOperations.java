@@ -23,10 +23,14 @@ public class DataOperations {
         txt = s;
     }
 
+    public String getText(){
+        return txt;
+    }
+
     public FileTypes checkTheType() {
         if (isJPG_JFIF()) return FileTypes.JPG_JFIF;
-        if (isJPG_EXIF()) return FileTypes.JPG_EXIF;
-        if (isJPG()) return FileTypes.JPG;
+        else if (isJPG_EXIF()) return FileTypes.JPG_EXIF;
+        else if (isJPG()) return FileTypes.JPG;
         else if (isGIF()) return FileTypes.GIF;
         else if (isPNG()) return FileTypes.PNG;
         else if (isPDF()) return FileTypes.PDF;
@@ -73,8 +77,13 @@ public class DataOperations {
         ???
      */
     private boolean isTXT(){
-        // TODO:
-        return false;
+        char[] arr = getText().toCharArray();
+        for (char c:arr) {
+            if( (int)c < 32 || (int)c > 126){
+                return false;
+            }
+        }
+        return true;
     }
 
     /*
